@@ -24,7 +24,7 @@ public class BigValue {
     /**
      * Tableau de String permettant l'affichage des valeurs
      */
-    private String c[] = {"", "k", "M", "T", "B"};
+    private String c[] = {"", "k", "M", "B", "T"};
 
     /**
      *
