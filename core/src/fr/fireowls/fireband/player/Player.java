@@ -1,5 +1,6 @@
 package fr.fireowls.fireband.player;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import fr.fireowls.fireband.interfaces.Achetable;
@@ -11,7 +12,7 @@ import fr.fireowls.fireband.instruments.Instruments;
  * @author TheTeKsa
  *
  */
-public class Player {
+public class Player implements Serializable {
 	/**
 	 * Le nom du joueur
 	 */
