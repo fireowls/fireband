@@ -58,6 +58,10 @@ public class Player {
 		return false;
 	}
 
+	/**
+	 * Ajouter de l argent au joueur
+	 * @param money le montant a ajouter
+	 */
 	public void addMoney(long money) {
 		this.money.add(money);
 	}
