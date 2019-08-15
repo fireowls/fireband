@@ -2,6 +2,8 @@ package fr.fireowls.fireband.instruments;
 
 import java.util.Random;
 
+import fr.fireowls.fireband.util.BigValue;
+
 /**
  * 
  * @author MrKeesLer
@@ -20,11 +22,11 @@ public abstract class Instruments {
 	/**
 	 * Progession sur l'instrument
 	 */
-	protected long instrument_progess;
+	protected BigValue instrument_progess;
 	/**
 	 * Experience necaissaire pour levelup
 	 */
-	protected long progessToLevelup;
+	protected BigValue progessToLevelup;
 	
 	protected static Random rand = new Random();
 	
@@ -34,18 +36,18 @@ public abstract class Instruments {
 	 * @param level est le niveau de l'instrument
 	 * @param progess est la progression sur cet instrument
 	 */
-	public Instruments(int tier, int level, long progess) {
+	public Instruments(int tier, int level, BigValue progess) {
 		this.instrument_Tier = tier;
 		this.instrument_Level = level;
 		this.instrument_progess = progess;
-		this.progessToLevelup = (100 * (10^this.instrument_Level)) / 10;
+		this.progessToLevelup.add((100 * (10^this.instrument_Level)) / 10);
 	}
 	
 	/**
 	 * Constructeur pour initialiser pour la premiere fois un instrument
 	 */
 	public Instruments() {
-		this(1,1,0);
+		this(1,1,new BigValue('m'));
 	}
 	
 	/**
@@ -54,8 +56,9 @@ public abstract class Instruments {
 	public void checkProgess() {
 		if(this.instrument_progess == this.progessToLevelup) {
 			this.instrument_Level++;
-			this.instrument_progess = 0;
-			this.progessToLevelup = (100 * (10^this.instrument_Level)) / 10;
+			this.instrument_progess = new BigValue('m');
+			this.progessToLevelup = new BigValue('m');
+			this.progessToLevelup.add( (100 * (10^this.instrument_Level)) / 10);
 		}
 	}
 	
@@ -64,7 +67,7 @@ public abstract class Instruments {
 	 * @param instru l'instrument qui progresse
 	 */
 	public static void updateProgess(Instruments instru) {
-		instru.instrument_progess += instru.instrument_Level * instru.instrument_Tier;
+		instru.instrument_progess.add(instru.instrument_Level * instru.instrument_Tier);
 		instru.checkProgess();
 	}
 	
@@ -98,14 +101,15 @@ public abstract class Instruments {
 	 */
 	public void setLevel(int level) {
 		this.instrument_Level = level;
-		this.progessToLevelup = ( 100 * 10^this.instrument_Level ) / 10;
+		this.progessToLevelup = new BigValue('m');
+		this.progessToLevelup.add(( 100 * 10^this.instrument_Level ) / 10);
 	}
 	
 	/**
 	 * 
 	 * @return la progression de l'instrument
 	 */
-	public long getProgess() {
+	public BigValue getProgess() {
 		return this.instrument_progess;
 	}
 	
@@ -114,7 +118,7 @@ public abstract class Instruments {
 	 * Permet de changer la progression de l'instrument
 	 * @param val est la nouvelle progression de l'instrument
 	 */
-	public void setProgess(long val) {
+	public void setProgess(BigValue val) {
 		this.instrument_progess = val;
 		this.checkProgess();
 	}
@@ -123,7 +127,7 @@ public abstract class Instruments {
 	 * 
 	 * @return l'experience necaissaire pour passer au niveau superieur
 	 */
-	public long getExpToLevelup() {
+	public BigValue getExpToLevelup() {
 		return this.progessToLevelup;
 	}
 	
@@ -131,10 +135,10 @@ public abstract class Instruments {
 	 * Permet de changer l'experience requis pour levelup
 	 * @param val est la nouvelle valeur d'experience requis
 	 */
-	public void setExpToLevelup(long val) {
+	public void setExpToLevelup(BigValue val) {
 		this.progessToLevelup = val;
 	}
-	
+
 	abstract boolean hasBrock();
 	abstract boolean canBeUse();
 }
