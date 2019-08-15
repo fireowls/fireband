@@ -39,7 +39,7 @@ public class Player {
 	 * @param i l instrument a ajouter
 	 * @return true si reussite ou false si echec de l ajout
 	 */
-	public boolean addInstrument(Instruments i) {          //COMMENTAIRE A RETIRER : je crois pas que t'est besoin de check si il le contient car je suis pratiquement sûr que l'ArrayList le fait lui meme pareil pour le remove
+	public boolean addInstrument(Instruments i) {
 		if (!this.instruments.contains(i)) {
 			this.instruments.add(i);
 			return true;
