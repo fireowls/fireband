@@ -12,6 +12,7 @@ import fr.fireowls.fireband.instruments.Instruments;
  */
 public class Player {
 
+	private String name;
 	private BigValue money;
 	private ArrayList<Instruments> instruments;
 	
@@ -20,7 +21,8 @@ public class Player {
 	 * @param money argent du joueur
 	 * @param instruments la liste des instruments du joueur
 	 */
-	public Player(BigValue money, ArrayList<Instruments> instruments) {
+	public Player(String name, BigValue money, ArrayList<Instruments> instruments) {
+		this.name = name;
 		this.money = money;
 		this.instruments = instruments;
 	}
@@ -28,8 +30,8 @@ public class Player {
 	/**
 	 * Constructeur d un nouveau joueur
 	 */
-	public Player() {
-		this(new BigValue('$'), new ArrayList<Instruments>());
+	public Player(String name) {
+		this(name, new BigValue('$'), new ArrayList<Instruments>());
 	}
 	
 	/**
@@ -64,6 +66,14 @@ public class Player {
 	 */
 	public void addMoney(long money) {
 		this.money.add(money);
+	}
+
+	/**
+	 * Recuperer le nom du joueur
+	 * @return le nom du joueur
+	 */
+	public String getName() {
+		return name;
 	}
 
 	/**
