@@ -14,7 +14,7 @@ public class PlayerTest {
         System.out.println(player.getMoney().toString());
         player.addMoney(500);
         System.out.println(player.getMoney().toString());
-        player.removeMoney(400);
+        player.substractMoney(400);
         System.out.println(player.getMoney().toString());
     }
 

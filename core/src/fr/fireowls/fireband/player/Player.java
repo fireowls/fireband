@@ -31,7 +31,7 @@ public class Player {
 	 * Constructeur d un nouveau joueur
 	 */
 	public Player(String name) {
-		this(name, new BigValue('$'), new ArrayList<Instruments>());
+		this(name, new BigValue("$"), new ArrayList<Instruments>());
 	}
 	
 	/**
