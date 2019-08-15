@@ -64,8 +64,16 @@ public class Player {
 	 * Ajouter de l argent au joueur
 	 * @param money le montant a ajouter
 	 */
-	public void addMoney(long money) {
+	public void addMoney(int money) {
 		this.money.add(money);
+	}
+
+	/**
+	 * Retirer de l argent au joueur
+	 * @param money le montant a retirer
+	 */
+	public void removeMoney(int money) {
+		this.money.subtract(money);
 	}
 
 	/**
