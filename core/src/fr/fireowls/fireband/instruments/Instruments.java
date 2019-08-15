@@ -140,6 +140,10 @@ public abstract class Instruments {
 		this.progessToLevelup = val;
 	}
 
+	public String toString(){
+		return this.getClass().getSimpleName()+" [tier "+this.instrument_Tier+"; level "+this.instrument_Level+"; progres "+this.instrument_progess+"/"+this.progessToLevelup+"]";
+	}
+
 	abstract boolean hasBrock();
 	abstract boolean canBeUse();
 }
