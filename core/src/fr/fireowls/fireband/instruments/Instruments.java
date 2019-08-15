@@ -40,7 +40,7 @@ public abstract class Instruments {
 		this.instrument_Tier = tier;
 		this.instrument_Level = level;
 		this.instrument_progess = progess;
-		this.progessToLevelup = new BigValue('m');
+		this.progessToLevelup = new BigValue('♫');
 		this.progessToLevelup.add((100 * (10^this.instrument_Level)) / 10);
 	}
 	
@@ -48,7 +48,7 @@ public abstract class Instruments {
 	 * Constructeur pour initialiser pour la premiere fois un instrument
 	 */
 	public Instruments() {
-		this(1,1,new BigValue('m'));
+		this(1,1,new BigValue('♫'));
 	}
 	
 	/**
@@ -57,8 +57,8 @@ public abstract class Instruments {
 	public void checkProgess() {
 		if(this.instrument_progess == this.progessToLevelup) {
 			this.instrument_Level++;
-			this.instrument_progess = new BigValue('m');
-			this.progessToLevelup = new BigValue('m');
+			this.instrument_progess = new BigValue('♫');
+			this.progessToLevelup = new BigValue('♫');
 			this.progessToLevelup.add( (100 * (10^this.instrument_Level)) / 10);
 		}
 	}
@@ -102,7 +102,7 @@ public abstract class Instruments {
 	 */
 	public void setLevel(int level) {
 		this.instrument_Level = level;
-		this.progessToLevelup = new BigValue('m');
+		this.progessToLevelup = new BigValue('♫');
 		this.progessToLevelup.add(( 100 * 10^this.instrument_Level ) / 10);
 	}
 	

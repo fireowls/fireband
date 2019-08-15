@@ -18,13 +18,14 @@ public class Piano extends Instruments {
 	 */
 	public Piano(int tier, int level, BigValue progress) {
 		super(tier, level, progress);
+		this.brokenPiano = false;
 	}
 	
 	/**
 	 * Constructeur a utilise pour creer un piano basique
 	 */
 	public Piano() {
-		this(1,1,new BigValue('m'));
+		this(1,1,new BigValue('♫'));
 	}
 
 	/**

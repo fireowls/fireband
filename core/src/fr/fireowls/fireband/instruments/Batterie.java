@@ -26,7 +26,7 @@ public class Batterie extends Instruments{
 	 * Constructeur pour creer une batterie basique
 	 */
 	public Batterie() {
-		this(1,1,new BigValue('m'));
+		this(1,1,new BigValue('♫'));
 	}
 
 	/**

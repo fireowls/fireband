@@ -23,10 +23,10 @@ public class Basse extends Instruments{
 		this.brokenString = false;
 	}
 	/**
-	 * Constructeur a utilise pour cr�er une basse
+	 * Constructeur a utilise pour creer une basse
 	 */
 	public Basse() {
-		this(1,1,new BigValue('m'));
+		this(1,1,new BigValue('♫'));
 	}
 	
 	/**

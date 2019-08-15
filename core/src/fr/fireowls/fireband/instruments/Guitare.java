@@ -27,7 +27,7 @@ public class Guitare extends Instruments {
 	 * Constructeur a utilise pour creer une guitare basique
 	 */
 	public Guitare() {
-		this(1,1,new BigValue('m'));
+		this(1,1,new BigValue('♫'));
 	}
 	
 	/**
