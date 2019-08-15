@@ -2,7 +2,7 @@ package fr.fireowls.fireband.instruments;
 
 import java.util.Random;
 
-import fr.fireowls.fireband.util.BigValue;
+import fr.fireowls.fireband.util.Competence;
 
 /**
  * 
@@ -15,18 +15,8 @@ public abstract class Instruments {
 	 * Tier de l'instrument
 	 */
 	protected int instrument_Tier;
-	/**
-	 * Niveau de l'instrument
-	 */
-	protected int instrument_Level;
-	/**
-	 * Progession sur l'instrument
-	 */
-	protected BigValue instrument_progess;
-	/**
-	 * Experience necaissaire pour levelup
-	 */
-	protected BigValue progessToLevelup;
+
+	protected Competence instrument_Level;
 	
 	protected static Random rand = new Random();
 	
@@ -34,33 +24,24 @@ public abstract class Instruments {
 	 * Construteur pour reprendre une progession
 	 * @param tier est le tier de l'instrument
 	 * @param level est le niveau de l'instrument
-	 * @param progess est la progression sur cet instrument
 	 */
-	public Instruments(int tier, int level, BigValue progess) {
+	public Instruments(int tier, Competence level) {
 		this.instrument_Tier = tier;
 		this.instrument_Level = level;
-		this.instrument_progess = progess;
-		this.progessToLevelup = new BigValue('♫');
-		this.progessToLevelup.add((100 * (10^this.instrument_Level)) / 10);
 	}
 	
 	/**
 	 * Constructeur pour initialiser pour la premiere fois un instrument
 	 */
 	public Instruments() {
-		this(1,1,new BigValue('♫'));
+		this(1,new Competence());
 	}
 	
 	/**
 	 * Verifie si l'instrument a assez d'experience pour passer au niveau superieur
 	 */
 	public void checkProgess() {
-		if(this.instrument_progess == this.progessToLevelup) {
-			this.instrument_Level++;
-			this.instrument_progess = new BigValue('♫');
-			this.progessToLevelup = new BigValue('♫');
-			this.progessToLevelup.add( (100 * (10^this.instrument_Level)) / 10);
-		}
+		this.instrument_Level.checkProgress();
 	}
 	
 	/**
@@ -68,8 +49,7 @@ public abstract class Instruments {
 	 * @param instru l'instrument qui progresse
 	 */
 	public static void updateProgess(Instruments instru) {
-		instru.instrument_progess.add(instru.instrument_Level * instru.instrument_Tier);
-		instru.checkProgess();
+		instru.instrument_Level.updateProgress(instru.instrument_Tier);
 	}
 	
 	/**
@@ -92,7 +72,7 @@ public abstract class Instruments {
 	 * 
 	 * @return le niveau de l'instrument
 	 */
-	public int getLevel() {
+	public Competence getLevel() {
 		return this.instrument_Level;
 	}
 	
@@ -100,48 +80,16 @@ public abstract class Instruments {
 	 * Permet de changer le niveau de l'instrument
 	 * @param level est le nouveau niveau
 	 */
-	public void setLevel(int level) {
+	public void setLevel(Competence level) {
 		this.instrument_Level = level;
-		this.progessToLevelup = new BigValue('♫');
-		this.progessToLevelup.add(( 100 * 10^this.instrument_Level ) / 10);
-	}
-	
-	/**
-	 * 
-	 * @return la progression de l'instrument
-	 */
-	public BigValue getProgess() {
-		return this.instrument_progess;
-	}
-	
-	
-	/**
-	 * Permet de changer la progression de l'instrument
-	 * @param val est la nouvelle progression de l'instrument
-	 */
-	public void setProgess(BigValue val) {
-		this.instrument_progess = val;
-		this.checkProgess();
-	}
-	
-	/**
-	 * 
-	 * @return l'experience necaissaire pour passer au niveau superieur
-	 */
-	public BigValue getExpToLevelup() {
-		return this.progessToLevelup;
-	}
-	
-	/**
-	 * Permet de changer l'experience requis pour levelup
-	 * @param val est la nouvelle valeur d'experience requis
-	 */
-	public void setExpToLevelup(BigValue val) {
-		this.progessToLevelup = val;
 	}
 
+	/**
+	 * Methode affichage de l'instrument
+	 * @return le type d'instrument, son tier, son niveau et sa progression
+	 */
 	public String toString(){
-		return this.getClass().getSimpleName()+" [tier "+this.instrument_Tier+"; level "+this.instrument_Level+"; progres "+this.instrument_progess+"/"+this.progessToLevelup+"]";
+		return this.getClass().getSimpleName()+" [tier "+this.instrument_Tier+"; level "+this.instrument_Level+"; progres "+this.instrument_Level.getProgress()+"/"+this.instrument_Level.getExpToLevelUp()+"]";
 	}
 
 	abstract boolean hasBrock();
