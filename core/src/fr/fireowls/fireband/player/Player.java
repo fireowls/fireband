@@ -2,6 +2,7 @@ package fr.fireowls.fireband.player;
 
 import java.util.ArrayList;
 
+import fr.fireowls.fireband.interfaces.Achetable;
 import fr.fireowls.fireband.util.BigValue;
 import fr.fireowls.fireband.instruments.Instruments;
 
@@ -11,9 +12,17 @@ import fr.fireowls.fireband.instruments.Instruments;
  *
  */
 public class Player {
-
+	/**
+	 * Le nom du joueur
+	 */
 	private String name;
+	/**
+	 * L argent du joueur
+	 */
 	private BigValue money;
+	/**
+	 * Les instruments possede par le joueur
+	 */
 	private ArrayList<Instruments> instruments;
 	
 	/**
@@ -74,6 +83,19 @@ public class Player {
 	 */
 	public void substractMoney(int money) {
 		this.money.subtract(money);
+	}
+
+	/**
+	 * Fonction pour acheter instruments ou musiciens
+	 * @param item l item a acheter
+	 * @return true si le joueur a assez d argent ou false le cas contraire
+	 */
+	public boolean buy(Achetable item) {
+		if (this.money.compareTo(item.getPrice()) <= 0) {
+			this.money.subtract(item.getPrice());
+			return true;
+		}
+		return false;
 	}
 
 	/**
