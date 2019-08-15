@@ -58,6 +58,10 @@ public class Player {
 		return false;
 	}
 
+	public void addMoney(long money) {
+		this.money.add(money);
+	}
+
 	/**
 	 * Recuperer l argent du joueur
 	 * @return l argent du joueur
