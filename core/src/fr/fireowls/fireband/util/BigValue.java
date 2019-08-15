@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * developé par FireOwls.
  * @author vaniscotte-geoffrey
  */
-public class BigValue {
+public class BigValue implements Comparable<BigValue>{
 
     private BigInteger value;
     /**
@@ -133,5 +133,10 @@ public class BigValue {
     	if(value.toString().length() % 3 == 1) return value.toString().substring(0, 1) + getSubDivition() + unite;
     	if(value.toString().length() % 3 == 2) return value.toString().substring(0, 2) + getSubDivition() + unite;
     	return "Error";
+    }
+
+    @Override
+    public int compareTo(BigValue o) {
+        return this.value.compareTo(o.value);
     }
 }
