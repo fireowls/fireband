@@ -8,7 +8,8 @@ import fr.fireowls.fireband.util.BigValue;
  * Classe qui gere le piano
  */
 public class Piano extends Instruments {
-	
+
+	private boolean brokenPiano;
 	/**
 	 * Constructeur pour creer un piano avec certaine valeur
 	 * @param tier est le tier du piano
@@ -31,7 +32,10 @@ public class Piano extends Instruments {
 	 * @return true si les cordes ont cassees, false sinon
 	 */
 	boolean hasBrock() {
-		return false;
+		if(Instruments.rand.nextInt(100) > 94) {
+			this.brokenPiano = true;
+		}
+		return this.brokenPiano;
 	}
 
 	/**
@@ -39,6 +43,9 @@ public class Piano extends Instruments {
 	 * @return false si il y a de la casse, true sinon
 	 */
 	boolean canBeUse() {
+		if(this.brokenPiano){
+			return false;
+		}
 		return true;
 	}
 }
