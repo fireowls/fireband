@@ -1,4 +1,4 @@
-package fr.fireowls.FireBand.instruments;
+package fr.fireowls.fireband.instruments;
 
 import java.util.Random;
 
