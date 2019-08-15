@@ -1,6 +1,10 @@
 package fr.fireowls.fireband.instruments;
 
+import java.io.Serializable;
+
 import fr.fireowls.fireband.util.BigValue;
+import fr.fireowls.fireband.util.Competence;
+import fr.fireowls.fireband.util.Constant;
 
 /**
  * 
@@ -8,17 +12,16 @@ import fr.fireowls.fireband.util.BigValue;
  * @version 1.0
  * Classe qui gere la batterie
  */
-public class Batterie extends Instruments{
+public class Batterie extends Instruments implements Serializable {
 	
 	private boolean brockenCymbal;
 	/**
 	 * Constructeur pour cr�er une batterie avec des parametres specifier
 	 * @param tier est le tier de la batterie
 	 * @param level est le niveau de la batterie
-	 * @param progress est le progres de la batterie
 	 */
-	public Batterie(int tier, int level, BigValue progress) {
-		super(tier,level,progress);
+	public Batterie(int tier,Competence level) {
+		super(tier,level);
 		this.brockenCymbal = false;
 	}
 	
@@ -26,7 +29,7 @@ public class Batterie extends Instruments{
 	 * Constructeur pour creer une batterie basique
 	 */
 	public Batterie() {
-		this(1,1,new BigValue('♫'));
+		this(0,new Competence());
 	}
 
 	/**
@@ -47,5 +50,10 @@ public class Batterie extends Instruments{
 	boolean canBeUse() {
 		if(this.brockenCymbal) return false;
 		return true;
+	}
+
+
+	public BigValue getPrice() {
+		return Constant.getTierPrice()[this.instrument_Tier];
 	}
 }

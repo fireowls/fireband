@@ -1,23 +1,27 @@
 package fr.fireowls.fireband.instruments;
 
+import java.io.Serializable;
+
 import fr.fireowls.fireband.util.BigValue;
+import fr.fireowls.fireband.util.Competence;
+import fr.fireowls.fireband.util.Constant;
+
 /**
  * 
  * @author MrKeesLer
  * @version 1.0
  * Classe qui gere le piano
  */
-public class Piano extends Instruments {
+public class Piano extends Instruments implements Serializable {
 
 	private boolean brokenPiano;
 	/**
 	 * Constructeur pour creer un piano avec certaine valeur
 	 * @param tier est le tier du piano
 	 * @param level est le niveau du piano
-	 * @param progress est la progression du piano
 	 */
-	public Piano(int tier, int level, BigValue progress) {
-		super(tier, level, progress);
+	public Piano(int tier, Competence level) {
+		super(tier, level);
 		this.brokenPiano = false;
 	}
 	
@@ -25,7 +29,7 @@ public class Piano extends Instruments {
 	 * Constructeur a utilise pour creer un piano basique
 	 */
 	public Piano() {
-		this(1,1,new BigValue('♫'));
+		this(0,new Competence());
 	}
 
 	/**
@@ -48,5 +52,9 @@ public class Piano extends Instruments {
 			return false;
 		}
 		return true;
+	}
+
+	public BigValue getPrice(){
+		return Constant.getTierPrice()[this.instrument_Tier];
 	}
 }

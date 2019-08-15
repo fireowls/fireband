@@ -1,6 +1,10 @@
 package fr.fireowls.fireband.instruments;
+import java.io.Serializable;
 
 import fr.fireowls.fireband.util.BigValue;
+import fr.fireowls.fireband.util.Competence;
+import fr.fireowls.fireband.util.Constant;
+
 
 /**
  * 
@@ -8,7 +12,7 @@ import fr.fireowls.fireband.util.BigValue;
  * @version 1.0
  * Classe qui gere la guitare
  */
-public class Guitare extends Instruments {
+public class Guitare extends Instruments implements Serializable {
 
 	private boolean brokenString;
 	
@@ -16,10 +20,9 @@ public class Guitare extends Instruments {
 	 * Constructeur pour creer une guiatre avec certaine valeur
 	 * @param tier est le tier de la guitare
 	 * @param level est le niveau de la guitare
-	 * @param progress est la progression de la guitare
 	 */
-	public Guitare(int tier, int level, BigValue progress) {
-		super(tier,level,progress);
+	public Guitare(int tier, Competence level) {
+		super(tier,level);
 		this.brokenString = false;
 	}
 
@@ -27,7 +30,7 @@ public class Guitare extends Instruments {
 	 * Constructeur a utilise pour creer une guitare basique
 	 */
 	public Guitare() {
-		this(1,1,new BigValue('♫'));
+		this(0,new Competence());
 	}
 	
 	/**
@@ -50,5 +53,10 @@ public class Guitare extends Instruments {
 			return false;
 		}
 		return true;
+	}
+
+
+	public BigValue getPrice() {
+		return Constant.getTierPrice()[this.instrument_Tier];
 	}
 }

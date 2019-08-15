@@ -1,7 +1,10 @@
 package fr.fireowls.fireband.instruments;
 
+import java.io.Serializable;
 import java.util.Random;
 
+import fr.fireowls.fireband.interfaces.Achetable;
+import fr.fireowls.fireband.player.Player;
 import fr.fireowls.fireband.util.Competence;
 
 /**
@@ -10,7 +13,7 @@ import fr.fireowls.fireband.util.Competence;
  * @version 1.0
  * Classe qui gere les bases des instruments
  */
-public abstract class Instruments {
+public abstract class Instruments implements Serializable, Achetable {
 	/**
 	 * Tier de l'instrument
 	 */
@@ -34,7 +37,7 @@ public abstract class Instruments {
 	 * Constructeur pour initialiser pour la premiere fois un instrument
 	 */
 	public Instruments() {
-		this(1,new Competence());
+		this(0,new Competence());
 	}
 	
 	/**
@@ -90,6 +93,14 @@ public abstract class Instruments {
 	 */
 	public String toString(){
 		return this.getClass().getSimpleName()+" [tier "+this.instrument_Tier+"; level "+this.instrument_Level+"; progres "+this.instrument_Level.getProgress()+"/"+this.instrument_Level.getExpToLevelUp()+"]";
+	}
+
+	public boolean upgradeTier(Player player){
+		if(player.buy(this)){
+			this.instrument_Tier++;
+			return true;
+		}
+		return false;
 	}
 
 	abstract boolean hasBrock();

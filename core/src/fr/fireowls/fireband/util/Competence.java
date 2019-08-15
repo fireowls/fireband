@@ -1,11 +1,13 @@
 package fr.fireowls.fireband.util;
 
+import java.io.Serializable;
+
 /**
  * @author MrKeesLer
  * @version 1.0
  * Classe qui gere la progression d'une comptence
  */
-public class Competence {
+public class Competence implements Serializable {
 
     private int level;
     private BigValue progress;

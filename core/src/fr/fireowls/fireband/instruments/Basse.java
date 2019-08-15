@@ -1,6 +1,10 @@
 package fr.fireowls.fireband.instruments;
 
+import java.io.Serializable;
+
 import fr.fireowls.fireband.util.BigValue;
+import fr.fireowls.fireband.util.Competence;
+import fr.fireowls.fireband.util.Constant;
 
 /**
  * 
@@ -8,7 +12,7 @@ import fr.fireowls.fireband.util.BigValue;
  * @version 1.0
  * Classe qui gere la basse
  */
-public class Basse extends Instruments{
+public class Basse extends Instruments implements Serializable {
 	
 	private boolean brokenString;
 	
@@ -16,17 +20,16 @@ public class Basse extends Instruments{
 	 * Constructeur pour creer une basse avec certaine valeur
 	 * @param tier est le tier de la basse
 	 * @param level est le niveau de la basse
-	 * @param progress est la progression de la basse
 	 */
-	public Basse(int tier, int level, BigValue progress) {
-		super(tier,level,progress);
+	public Basse(int tier, Competence level) {
+		super(tier,level);
 		this.brokenString = false;
 	}
 	/**
 	 * Constructeur a utilise pour creer une basse
 	 */
 	public Basse() {
-		this(1,1,new BigValue('♫'));
+		this(0,new Competence());
 	}
 	
 	/**
@@ -49,5 +52,9 @@ public class Basse extends Instruments{
 			return false;
 		}
 		return true;
+	}
+
+	public BigValue getPrice() {
+		return Constant.getTierPrice()[this.instrument_Tier];
 	}
 }
