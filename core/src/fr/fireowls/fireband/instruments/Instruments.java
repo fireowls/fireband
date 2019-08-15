@@ -40,6 +40,7 @@ public abstract class Instruments {
 		this.instrument_Tier = tier;
 		this.instrument_Level = level;
 		this.instrument_progess = progess;
+		this.progessToLevelup = new BigValue('m');
 		this.progessToLevelup.add((100 * (10^this.instrument_Level)) / 10);
 	}
 	
