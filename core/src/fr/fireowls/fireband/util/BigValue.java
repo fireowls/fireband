@@ -33,8 +33,17 @@ public class BigValue implements Comparable<BigValue>{
      * @param unite correspond au caractère afficher lors de l'affichage du nombre
      */
     public BigValue(String unite){
+        this(unite, new BigInteger("0"));
+    }
+
+    public BigValue(String unite, BigInteger value){
         this.unite = unite;
-        value = new BigInteger("0");
+        this.value = value;
+    }
+
+    public BigValue(String unite, int value){
+        this.unite = unite;
+        this.value = new BigInteger(value+"");
     }
 
     /**
@@ -94,6 +103,42 @@ public class BigValue implements Comparable<BigValue>{
     }
 
     /**
+     * multiplie cette valeur à la valeur passer en paramètre
+     * @param number
+     */
+    public void multiply(BigValue number) { value = value.multiply(number.getValue());}
+
+    public void multiply(BigInteger number) {
+        value = value.multiply(number);
+    }
+
+    public void multiply(int number) {
+        multiply(new BigInteger(number+""));
+    }
+
+    public void multiply(long number) {
+        multiply(new BigInteger(number+""));
+    }
+
+    /**
+     * divise cette valeur à la valeur passer en paramètre
+     * @param number
+     */
+    public void divide(BigValue number) { value = value.divide(number.getValue());}
+
+    public void divide(BigInteger number) {
+        value = value.divide(number);
+    }
+
+    public void divide(int number) {
+        divide(new BigInteger(number+""));
+    }
+
+    public void divide(long number) {
+        divide(new BigInteger(number+""));
+    }
+
+    /**
      * Additionne cette valeur à la valeur passer en paramètre
      * @param number
      */
@@ -128,10 +173,10 @@ public class BigValue implements Comparable<BigValue>{
      * Affiche le bigvalue (ex : 789 $, 456 k$, 123 M$) si le caractere d'unité est '$'
      */
     public String toString() {
-    	if(value.toString().length() <= 3) return value.toString() + unite;
-    	if(value.toString().length() % 3 == 0) return value.toString().substring(0, 3) + getSubDivition() + unite;
-    	if(value.toString().length() % 3 == 1) return value.toString().substring(0, 1) + getSubDivition() + unite;
-    	if(value.toString().length() % 3 == 2) return value.toString().substring(0, 2) + getSubDivition() + unite;
+    	if(value.toString().length() <= 3) return value.toString() + " " + unite;
+    	if(value.toString().length() % 3 == 0) return value.toString().substring(0, 3) + " " + getSubDivition() + unite;
+    	if(value.toString().length() % 3 == 1) return value.toString().substring(0, 1) + " " + getSubDivition() + unite;
+    	if(value.toString().length() % 3 == 2) return value.toString().substring(0, 2) + " " + getSubDivition() + unite;
     	return "Error";
     }
 
