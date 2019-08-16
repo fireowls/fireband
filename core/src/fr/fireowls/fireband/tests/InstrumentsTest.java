@@ -15,11 +15,15 @@ public class InstrumentsTest {
     public static void main(String[] args){
         Instruments piano = new Piano();
         System.out.println(piano.toString());
+        testAllLevelAndTier(piano);
+        System.out.println("-----------------------------------------");
         testProgress(piano);
+
 
     }
 
     public static void testAllLevelAndTier(Instruments instru){
+        System.out.println("TESTING TIER AND LEVEL VALUES");
         for(int i = 0 ; i < Constant.MAX_LEVEL*2; i++){
             instru.setTier(i+1);
             instru.getCompetence().setLevel(i+1);
@@ -29,9 +33,14 @@ public class InstrumentsTest {
     }
 
     public static void testProgress(Instruments instru){
+        System.out.println("TESTING PROGRESS");
+        instru.getCompetence().setLevel(1);
         BigValue bigV = new BigValue(Constant.EXP_CHAR);
         bigV.setValue(1000000000);
         instru.getCompetence().setProgress(bigV);
         System.out.println(instru.toString());
     }
+
+
+
 }

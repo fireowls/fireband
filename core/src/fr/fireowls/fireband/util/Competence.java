@@ -86,6 +86,7 @@ public class Competence implements Serializable {
      */
     public void updateProgress(int tier){
         this.progress.add(this.level*tier);
+        this.checkProgress();
     }
 
     /**
