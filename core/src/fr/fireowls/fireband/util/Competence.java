@@ -29,7 +29,7 @@ public class Competence implements Serializable {
      * Constructeur pour creer une nouvelle competence
      */
     public Competence(){
-        this(1,new BigValue("♫"));
+        this(1,new BigValue(Constant.EXP_CHAR));
     }
 
     /**
@@ -68,16 +68,8 @@ public class Competence implements Serializable {
      * @param progress est la nouvelle progression
      */
     public void setProgress(BigValue progress) {
-        if(progress.equals(this.expToLevelUp)){
-            progress.subtract(this.expToLevelUp);
-            if(this.level < Constant.MAX_LEVEL){
-                this.level++;
-                this.expToLevelUp = this.expValues[this.level];
-                this.setProgress(progress);
-            }
-        }else {
-            this.progress = progress;
-        }
+        this.progress = progress;
+        this.checkProgress();
     }
 
     /**
@@ -100,11 +92,11 @@ public class Competence implements Serializable {
      * Permet de verifier si le joueur a assez d'experience pour monter de niveau
      */
     public void checkProgress(){
-        if(this.progress.equals(this.expToLevelUp)){
+        while(this.progress.getValue().compareTo(this.expToLevelUp.getValue()) >= 0){
             if(this.level < Constant.MAX_LEVEL) {
                 this.level++;
+                this.progress.subtract(this.expToLevelUp);
                 this.expToLevelUp = this.expValues[this.level];
-                this.progress.setValue(0);
             }
         }
     }
