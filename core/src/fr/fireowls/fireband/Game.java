@@ -13,9 +13,9 @@ public class Game {
 
         while(!str.equals("exit")) {
             player.addInstrument(new Piano());
-            System.out.println(player.getName() + " --- " + player.getMoney() + " --- "/* + player.getCurrentInstrument()*/);
+            System.out.println(player.getName() + " --- " + player.getMoney() + " --- " + player.getInstruments().get(0));
             str = scan.nextLine();
-            //player.getCurrentInstrument().click();
+            player.getInstruments().get(0).updateProgess();
         }
     }
 }
