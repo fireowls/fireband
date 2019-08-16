@@ -85,7 +85,7 @@ public class Competence implements Serializable {
      * @param tier est le tier de la competence
      */
     public void updateProgress(int tier){
-        this.progress.add(this.level*tier);
+        this.progress.add((this.level*tier));
         this.checkProgress();
     }
 
