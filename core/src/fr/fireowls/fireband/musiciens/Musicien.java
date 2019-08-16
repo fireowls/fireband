@@ -31,7 +31,7 @@ public class Musicien implements Achetable, Serializable {
     /**
      * Duree durant laquelle le musicien raporte des points quand l application est fermee
      */
-    private static int duree;
+    private static int limite;
 
     /**
      * Constructeur pour creer un musicien
@@ -45,7 +45,7 @@ public class Musicien implements Achetable, Serializable {
         this.price = price;
         this.instrument = instrument;
         this.pointParHeure = pointParHeure;
-        duree = 2;
+        limite = 2;
     }
 
     /**

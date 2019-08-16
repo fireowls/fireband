@@ -3,6 +3,7 @@ package fr.fireowls.fireband.player;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import fr.fireowls.fireband.exceptions.InstrumentNotFoundException;
 import fr.fireowls.fireband.interfaces.Achetable;
 import fr.fireowls.fireband.util.BigValue;
 import fr.fireowls.fireband.instruments.Instruments;
@@ -25,6 +26,7 @@ public class Player implements Serializable {
 	 * Les instruments possede par le joueur
 	 */
 	private ArrayList<Instruments> instruments;
+	private int idxCurrentInstrument;
 	
 	/**
 	 * Constructeur d un joueur deje existant
@@ -35,6 +37,7 @@ public class Player implements Serializable {
 		this.name = name;
 		this.money = money;
 		this.instruments = instruments;
+		this.idxCurrentInstrument = 0;
 	}
 	
 	/**
@@ -65,6 +68,14 @@ public class Player implements Serializable {
 	public boolean removeInstrument(Instruments i) {
 		if (this.instruments.contains(i)) {
 			this.instruments.remove(i);
+			return true;
+		}
+		return false;
+	}
+
+	public boolean switchInstrument(Instruments i) {
+		if (this.instruments.contains(i)) {
+			this.idxCurrentInstrument = this.instruments.indexOf(i);
 			return true;
 		}
 		return false;
@@ -122,5 +133,12 @@ public class Player implements Serializable {
 	public ArrayList<Instruments> getInstruments() {
 		return instruments;
 	}
-	
+
+	public Instruments getCurrentInstrument() throws InstrumentNotFoundException {
+		if (this.instruments.isEmpty()) {
+			throw new InstrumentNotFoundException();
+		}
+		return this.instruments.get(this.idxCurrentInstrument);
+	}
+
 }
