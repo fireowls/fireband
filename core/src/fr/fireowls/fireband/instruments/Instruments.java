@@ -55,8 +55,8 @@ public abstract class Instruments implements Serializable, Achetable {
 	 * Met a jour la progression de l'instrument
 	 * @param instru l'instrument qui progresse
 	 */
-	public static void updateProgess(Instruments instru) {
-		instru.instrument_Level.updateProgress(instru.instrument_Tier);
+	public void updateProgess() {
+		this.instrument_Level.updateProgress(this.instrument_Tier);
 	}
 	
 	/**
