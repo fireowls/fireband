@@ -13,6 +13,7 @@ public class Game {
 
         while(!str.equals("exit")) {
             player.addInstrument(new Piano());
+            player.getInstruments().get(0).setTier(1);
             System.out.println(player.getName() + " --- " + player.getMoney() + " --- " + player.getInstruments().get(0));
             str = scan.nextLine();
             player.getInstruments().get(0).updateProgess();
