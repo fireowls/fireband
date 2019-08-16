@@ -54,6 +54,6 @@ public class Batterie extends Instruments implements Serializable {
 
 
 	public BigValue getPrice() {
-		return Constant.getTierPrice()[this.instrument_Tier];
+		return this.tierPrice[this.instrument_Tier];
 	}
 }

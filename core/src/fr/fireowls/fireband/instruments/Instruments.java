@@ -5,7 +5,9 @@ import java.util.Random;
 
 import fr.fireowls.fireband.interfaces.Achetable;
 import fr.fireowls.fireband.player.Player;
+import fr.fireowls.fireband.util.BigValue;
 import fr.fireowls.fireband.util.Competence;
+import fr.fireowls.fireband.util.Constant;
 
 /**
  * 
@@ -22,6 +24,8 @@ public abstract class Instruments implements Serializable, Achetable {
 	protected Competence instrument_Level;
 	
 	protected static Random rand = new Random();
+
+	protected BigValue tierPrice[] = Constant.getTierPrice();
 	
 	/**
 	 * Construteur pour reprendre une progession
@@ -68,14 +72,18 @@ public abstract class Instruments implements Serializable, Achetable {
 	 * @param tier est le nouveau tier
 	 */
 	public void setTier(int tier) {
-		this.instrument_Tier = tier;
+		if(tier > Constant.MAX_TIER){
+			this.instrument_Tier = Constant.MAX_TIER;
+		}else {
+			this.instrument_Tier = tier;
+		}
 	}
 	
 	/**
 	 * 
 	 * @return le niveau de l'instrument
 	 */
-	public Competence getLevel() {
+	public Competence getCompetence() {
 		return this.instrument_Level;
 	}
 	
@@ -83,7 +91,7 @@ public abstract class Instruments implements Serializable, Achetable {
 	 * Permet de changer le niveau de l'instrument
 	 * @param level est le nouveau niveau
 	 */
-	public void setLevel(Competence level) {
+	public void setCompetene(Competence level) {
 		this.instrument_Level = level;
 	}
 
@@ -92,7 +100,7 @@ public abstract class Instruments implements Serializable, Achetable {
 	 * @return le type d'instrument, son tier, son niveau et sa progression
 	 */
 	public String toString(){
-		return this.getClass().getSimpleName()+" [tier "+this.instrument_Tier+"; level "+this.instrument_Level+"; progres "+this.instrument_Level.getProgress()+"/"+this.instrument_Level.getExpToLevelUp()+"]";
+		return this.getClass().getSimpleName()+" [tier "+this.instrument_Tier+"; level "+this.instrument_Level.getLevel()+"; progres "+this.instrument_Level.getProgress()+"/"+this.instrument_Level.getExpToLevelUp()+"]";
 	}
 
 	public boolean upgradeTier(Player player){

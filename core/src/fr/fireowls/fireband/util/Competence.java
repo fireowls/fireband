@@ -12,6 +12,7 @@ public class Competence implements Serializable {
     private int level;
     private BigValue progress;
     private BigValue expToLevelUp;
+    private BigValue expValues[] = Constant.getExpToLvlUp();
 
     /**
      * Constructeur pour creer une competence avec des valeur specifiées
@@ -21,15 +22,14 @@ public class Competence implements Serializable {
     public Competence(int level,BigValue progess){
         this.level = level;
         this.progress = progess;
-        this.expToLevelUp = new BigValue("");
-        this.expToLevelUp.setValue((100*10^this.level)/10);
+        this.expToLevelUp = expValues[this.level];
     }
 
     /**
      * Constructeur pour creer une nouvelle competence
      */
     public Competence(){
-        this(1,new BigValue(" "));
+        this(1,new BigValue(Constant.EXP_CHAR));
     }
 
     /**
@@ -55,7 +55,12 @@ public class Competence implements Serializable {
      * @param level est le nouveau niveau
      */
     public void setLevel(int level) {
-        this.level = level;
+        if(level > Constant.MAX_LEVEL){
+            this.level = Constant.MAX_LEVEL;
+        }else {
+            this.level = level;
+        }
+        this.expToLevelUp = this.expValues[this.level];
     }
 
     /**
@@ -63,14 +68,8 @@ public class Competence implements Serializable {
      * @param progress est la nouvelle progression
      */
     public void setProgress(BigValue progress) {
-        if(progress.equals(this.expToLevelUp)){
-            progress.subtract(this.expToLevelUp);
-            this.level++;
-            this.expToLevelUp.setValue((100*10^this.level)/10);
-            this.setProgress(progress);
-        }else {
-            this.progress = progress;
-        }
+        this.progress = progress;
+        this.checkProgress();
     }
 
     /**
@@ -93,10 +92,12 @@ public class Competence implements Serializable {
      * Permet de verifier si le joueur a assez d'experience pour monter de niveau
      */
     public void checkProgress(){
-        if(this.progress.equals(this.expToLevelUp)){
-            this.level++;
-            this.expToLevelUp.setValue((100*10^this.level)/10);
-            this.expToLevelUp.setValue(0);
+        while(this.progress.getValue().compareTo(this.expToLevelUp.getValue()) >= 0){
+            if(this.level < Constant.MAX_LEVEL) {
+                this.level++;
+                this.progress.subtract(this.expToLevelUp);
+                this.expToLevelUp = this.expValues[this.level];
+            }
         }
     }
 }
