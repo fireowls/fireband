@@ -9,6 +9,7 @@ public class PlayerTest {
         Player player = new Player("Madeline");
         Piano piano = new Piano();
 
+        System.out.println(player.getName());
         System.out.println(player.addInstrument(piano) + player.getInstruments().toString());
         System.out.println(player.removeInstrument(piano) + player.getInstruments().toString());
         System.out.println(player.getMoney().toString());
@@ -16,6 +17,7 @@ public class PlayerTest {
         System.out.println(player.getMoney().toString());
         player.substractMoney(400);
         System.out.println(player.getMoney().toString());
+        System.out.println(piano.getPrice());
     }
 
 }
