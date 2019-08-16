@@ -173,10 +173,10 @@ public class BigValue implements Comparable<BigValue>{
      * Affiche le bigvalue (ex : 789 $, 456 k$, 123 M$) si le caractere d'unité est '$'
      */
     public String toString() {
-    	if(value.toString().length() <= 3) return value.toString() + " " + unite;
-    	if(value.toString().length() % 3 == 0) return value.toString().substring(0, 3) + " " + getSubDivition() + unite;
-    	if(value.toString().length() % 3 == 1) return value.toString().substring(0, 1) + " " + getSubDivition() + unite;
-    	if(value.toString().length() % 3 == 2) return value.toString().substring(0, 2) + " " + getSubDivition() + unite;
+    	if(value.toString().length() <= 3) return value.toString() + unite;
+    	if(value.toString().length() % 3 == 0) return value.toString().substring(0, 3) + getSubDivition() + unite;
+    	if(value.toString().length() % 3 == 1) return value.toString().substring(0, 1) + "." + value.toString().substring(1, 3) + getSubDivition() + unite;
+    	if(value.toString().length() % 3 == 2) return value.toString().substring(0, 2) + "." + value.toString().substring(2, 3) + getSubDivition() + unite;
     	return "Error";
     }
 
