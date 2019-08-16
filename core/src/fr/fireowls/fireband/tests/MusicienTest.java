@@ -14,7 +14,7 @@ public class MusicienTest {
         musicien.getPrice().add(50);
         System.out.println(musicien.getPrice());
         System.out.println(musicien.getPointParHeure());
-        musicien.getPointParHeure().add(30);
+        musicien.setPointParHeure(30);
         System.out.println(musicien.getPointParHeure());
     }
 

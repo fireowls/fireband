@@ -92,7 +92,7 @@ public class Player implements Serializable {
 	 * @return true si le joueur a assez d argent ou false le cas contraire
 	 */
 	public boolean buy(Achetable item) {
-		if (this.money.compareTo(item.getPrice()) <= 0) {
+		if (this.money.compareTo(item.getPrice()) >= 0) {
 			this.money.subtract(item.getPrice());
 			return true;
 		}

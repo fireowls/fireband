@@ -84,8 +84,8 @@ public class Musicien implements Achetable, Serializable {
      * Definir le nombre de point raporte par le musicien
      * @param pointParHeure Le nouveau nombre de point raporte par le musicien
      */
-    public void setPointParHeure(BigValue pointParHeure) {
-        this.pointParHeure = pointParHeure;
+    public void setPointParHeure(int pointParHeure) {
+        this.pointParHeure.setValue(pointParHeure);
     }
 
 }
