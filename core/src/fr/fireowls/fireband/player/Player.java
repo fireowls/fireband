@@ -26,6 +26,9 @@ public class Player implements Serializable {
 	 * Les instruments possede par le joueur
 	 */
 	private ArrayList<Instruments> instruments;
+	/**
+	 * Indice de l instrument en cours d utilisation
+	 */
 	private int idxCurrentInstrument;
 	
 	/**
@@ -73,6 +76,11 @@ public class Player implements Serializable {
 		return false;
 	}
 
+	/**
+	 * Permet de changer l instrument en cours d utilisation
+	 * @param i Nouvel instrument
+	 * @return true ou false selon la reussite ou non de la fonction
+	 */
 	public boolean switchInstrument(Instruments i) {
 		if (this.instruments.contains(i)) {
 			this.idxCurrentInstrument = this.instruments.indexOf(i);
@@ -134,6 +142,11 @@ public class Player implements Serializable {
 		return instruments;
 	}
 
+	/**
+	 * Recuperer l instrument en cours d utilisation
+	 * @return l instrument en cours d utilisation
+	 * @throws InstrumentNotFoundException
+	 */
 	public Instruments getCurrentInstrument() throws InstrumentNotFoundException {
 		if (this.instruments.isEmpty()) {
 			throw new InstrumentNotFoundException();
