@@ -108,11 +108,12 @@ public class Player implements Serializable {
 	/**
 	 * Fonction pour acheter instruments ou musiciens
 	 * @param item l item a acheter
+	 * @param tier que l'ont veut acheter
 	 * @return true si le joueur a assez d argent ou false le cas contraire
 	 */
-	public boolean buy(Achetable item) {
-		if (this.money.compareTo(item.getPrice(1)) >= 0) {
-			this.money.subtract(item.getPrice(1));
+	public boolean buy(Achetable item, int tier) {
+		if (this.money.compareTo(item.getPrice(tier)) >= 0) {
+			this.money.subtract(item.getPrice(tier));
 			return true;
 		}
 		return false;

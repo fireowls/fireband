@@ -113,12 +113,13 @@ public abstract class Instruments implements Serializable, Achetable {
 
     /**
      * Permet d'augementer le tier de l'instrument si le joueur peut l'acheter
+	 * @param tier tier que l'on veut acheter
      * @param player est le joueur qui va acheter le tier superieur
      * @return true si le joueur acheter le tier, false sinon
      */
-	public boolean upgradeTier(Player player){
-		if(player.buy(this)){
-			this.instrument_Tier++;
+	public boolean upgradeTier(Player player,int tier){
+		if(player.buy(this, tier)){
+			this.instrument_Tier = tier;
 			return true;
 		}
 		return false;
