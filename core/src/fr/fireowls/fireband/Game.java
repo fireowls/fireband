@@ -14,16 +14,14 @@ public class Game {
         Player player = new Player("GeoJo");
         Scanner scan = new Scanner(System.in);
         String str = "";
+        player.addMoney(100000);
+        player.addInstrument(new Piano());
+        player.addInstrument(new Guitare());
+        player.addInstrument(new Basse());
+        player.addInstrument(new Batterie());
+        player.getCurrentInstrument().setTier(1);
 
         while(!str.equals("exit")) {
-            player.addInstrument(new Piano());
-            player.addInstrument(new Guitare());
-            player.addInstrument(new Basse());
-            player.addInstrument(new Batterie());
-            player.getCurrentInstrument().setTier(1);
-
-            player.addMoney(100000);
-
 
             System.out.println(player.getName() + " --- " + player.getMoney() + " --- " + player.getCurrentInstrument());
             str = scan.nextLine();
