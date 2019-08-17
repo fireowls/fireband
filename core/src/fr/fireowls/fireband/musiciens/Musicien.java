@@ -5,6 +5,7 @@ import java.io.Serializable;
 import fr.fireowls.fireband.instruments.Instruments;
 import fr.fireowls.fireband.interfaces.Achetable;
 import fr.fireowls.fireband.util.BigValue;
+import fr.fireowls.fireband.util.Constant;
 
 /**
  * Classe pour creer un musicien
@@ -16,10 +17,7 @@ public class Musicien implements Achetable, Serializable {
      * Nom du musicien
      */
     private String name;
-    /**
-     * Prix du musicien
-     */
-    private BigValue price;
+
     /**
      * Instrument que le musicien sait jouer
      */
@@ -33,19 +31,22 @@ public class Musicien implements Achetable, Serializable {
      */
     private static int limite;
 
+    private int tier;
+
+    private BigValue tierPrice[] = Constant.getMusicienPrice();
+
     /**
      * Constructeur pour creer un musicien
      * @param name Nom du musicien
-     * @param price Prix du musition
      * @param instrument Instrument que le musicien sait jouer
      * @param pointParHeure Le nombre de point que raporte le musicien par heure
      */
-    public Musicien(String name, BigValue price, Instruments instrument, BigValue pointParHeure) {
+    public Musicien(String name, Instruments instrument, BigValue pointParHeure, int tier) {
         this.name = name;
-        this.price = price;
         this.instrument = instrument;
         this.pointParHeure = pointParHeure;
         limite = 2;
+        this.tier = tier;
     }
 
     /**
@@ -60,8 +61,8 @@ public class Musicien implements Achetable, Serializable {
      * Recuperer le prix du musicien
      * @return le prix du musicien
      */
-    public BigValue getPrice() {
-        return this.price;
+    public BigValue getPrice(int tier) {
+        return this.tierPrice[tier];
     }
 
     /**

@@ -6,6 +6,7 @@ import java.math.BigInteger;
 public class Constant {
     public static String divition[] = {"", "k", "M", "B", "T"};
     public static final int MAX_TIER = 5;
+    public static final int MAX_MUSICIEN_TIER = 5;
     public static final int MAX_LEVEL = 10;
     public static final String MONEY_CHAR = "$";
     public static final String EXP_CHAR = "♫";
@@ -20,6 +21,16 @@ public class Constant {
             //System.out.println(TIER_PRICE[i]);
         }
         return TIER_PRICE;
+    }
+
+    public static BigValue[] getMusicienPrice(){
+        final BigValue MUSICIEN_PRICE[] = new BigValue[Constant.MAX_MUSICIEN_TIER+1];
+        MUSICIEN_PRICE[0] = new BigValue(Constant.MONEY_CHAR);
+        for(int i = 1; i < MUSICIEN_PRICE.length; i++){
+            MUSICIEN_PRICE[i] = new BigValue(Constant.MONEY_CHAR);
+            MUSICIEN_PRICE[i].setValue((int)(1000*Math.pow(10,i)));
+        }
+        return MUSICIEN_PRICE;
     }
 
     // Potentiel fail ici si on peut ajouter des levels

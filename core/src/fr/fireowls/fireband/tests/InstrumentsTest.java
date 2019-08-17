@@ -19,6 +19,10 @@ public class InstrumentsTest {
         testAllLevelAndTier(piano);
         System.out.println("-----------------------------------------");
         testProgress(piano);
+        BigValue big[] = Constant.getMusicienPrice();
+        for(int i = 0; i < big.length; i++){
+            System.out.println("tier "+i+" "+big[i].toString());
+        }
     }
 
     public static void testAllLevelAndTier(Instruments instru){

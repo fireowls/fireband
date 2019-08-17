@@ -6,6 +6,7 @@ import fr.fireowls.fireband.instruments.Piano;
 import fr.fireowls.fireband.musiciens.Musicien;
 import fr.fireowls.fireband.player.Player;
 import fr.fireowls.fireband.util.BigValue;
+import fr.fireowls.fireband.util.Constant;
 
 public class PlayerTest {
 
@@ -20,9 +21,8 @@ public class PlayerTest {
     public static void testPlayer() {
         Player player = new Player("Madeline");
         Piano piano = new Piano();
-        Musicien musicien = new Musicien("Jellock", new BigValue("$"), new Piano(), new BigValue("$"));
+        Musicien musicien = new Musicien("Jellock", new Piano(), new BigValue(Constant.EXP_CHAR),0);
 
-        musicien.getPrice().add(50);
         System.out.println(player.getName());
         System.out.println(player.addInstrument(piano) + player.getInstruments().toString());
         System.out.println(player.removeInstrument(piano) + player.getInstruments().toString());
@@ -31,7 +31,7 @@ public class PlayerTest {
         System.out.println(player.getMoney().toString());
         player.substractMoney(400);
         System.out.println(player.getMoney().toString());
-        System.out.println(piano.getPrice());
+        System.out.println(piano.getPrice(piano.getTier()));
         System.out.println(player.buy(musicien));
     }
 
