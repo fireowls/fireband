@@ -21,10 +21,19 @@ public abstract class Instruments implements Serializable, Achetable {
 	 */
 	protected int instrument_Tier;
 
+    /**
+     * Competence de l'instrument ( niveau, progression et experience pour monter de niveau )
+     */
 	protected Competence instrument_Level;
-	
+
+    /**
+     * Permet de generer des nombres aléatoire
+     */
 	protected static Random rand = new Random();
 
+    /**
+     * Tableau stockant les cout des differents tier
+     */
 	protected BigValue tierPrice[] = Constant.getTierPrice();
 	
 	/**
@@ -53,7 +62,6 @@ public abstract class Instruments implements Serializable, Achetable {
 	
 	/**
 	 * Met a jour la progression de l'instrument
-	 * @param instru l'instrument qui progresse
 	 */
 	public void updateProgess() {
 		this.instrument_Level.updateProgress(this.instrument_Tier);
@@ -100,9 +108,14 @@ public abstract class Instruments implements Serializable, Achetable {
 	 * @return le type d'instrument, son tier, son niveau et sa progression
 	 */
 	public String toString(){
-		return this.getClass().getSimpleName()+" [tier "+this.instrument_Tier+"; level "+this.instrument_Level.getLevel()+"; progres "+this.instrument_Level.getProgress()+"/"+this.instrument_Level.getExpToLevelUp()+"]";
+		return this.getClass().getSimpleName()+" [tier "+this.instrument_Tier+"; level "+this.instrument_Level.getLevel()+"; progres "+this.instrument_Level.getProgress()+"/"+this.instrument_Level.getExpToLevelUp()+"("+this.instrument_Level.getPourcentage()+")]";
 	}
 
+    /**
+     * Permet d'augementer le tier de l'instrument si le joueur peut l'acheter
+     * @param player est le joueur qui va acheter le tier superieur
+     * @return true si le joueur acheter le tier, false sinon
+     */
 	public boolean upgradeTier(Player player){
 		if(player.buy(this)){
 			this.instrument_Tier++;
@@ -110,6 +123,13 @@ public abstract class Instruments implements Serializable, Achetable {
 		}
 		return false;
 	}
+
+    /**
+     * @return le pourcentage de progression dans le niveau de l'instrument
+     */
+	public String getPourcentage(){
+	    return this.instrument_Level.getPourcentage();
+    }
 
 	abstract boolean hasBrock();
 	abstract boolean canBeUse();

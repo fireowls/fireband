@@ -55,8 +55,11 @@ public class Guitare extends Instruments implements Serializable {
 		return true;
 	}
 
-
-	public BigValue getPrice() {
-		return this.tierPrice[this.instrument_Tier];
+	/**
+	 * @param tier est le dont on veut connaitre le prix
+	 * @return le prix du tier passé en parametre
+	 */
+	public BigValue getPrice(int tier) {
+		return this.tierPrice[tier];
 	}
 }

@@ -16,13 +16,9 @@ public class InstrumentsTest {
         Instruments piano = new Piano();
         piano.setTier(5);
         System.out.println(piano.toString());
-       /* testAllLevelAndTier(piano);
+        testAllLevelAndTier(piano);
         System.out.println("-----------------------------------------");
         testProgress(piano);
-        */
-       piano.updateProgess();
-       System.out.println(piano.toString());
-
     }
 
     public static void testAllLevelAndTier(Instruments instru){
@@ -31,7 +27,7 @@ public class InstrumentsTest {
             instru.setTier(i+1);
             instru.getCompetence().setLevel(i+1);
             System.out.println(instru.toString());
-            System.out.println("Tier price : "+instru.getPrice().toString());
+            System.out.println("Tier price : "+instru.getPrice(instru.getTier()).toString());
         }
     }
 

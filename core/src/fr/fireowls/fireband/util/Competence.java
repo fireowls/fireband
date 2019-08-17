@@ -1,6 +1,7 @@
 package fr.fireowls.fireband.util;
 
 import java.io.Serializable;
+import java.math.BigInteger;
 
 /**
  * @author MrKeesLer
@@ -100,5 +101,13 @@ public class Competence implements Serializable {
                 this.expToLevelUp = this.expValues[this.level];
             }
         }
+    }
+
+    /**
+     * @return le pourcentage de progression dans le niveau de l'instrument
+     */
+    public String getPourcentage(){
+        BigInteger pourcentage = this.progress.getValue().multiply(new BigInteger("100"));
+        return (pourcentage.divide(this.expToLevelUp.getValue()))+"%";
     }
 }

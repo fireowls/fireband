@@ -54,7 +54,11 @@ public class Basse extends Instruments implements Serializable {
 		return true;
 	}
 
-	public BigValue getPrice() {
-		return this.tierPrice[this.instrument_Tier];
+    /**
+     * @param tier est le tier dont on veut savoir le prix
+     * @return le cout du tier
+     */
+	public BigValue getPrice(int tier) {
+		return this.tierPrice[tier];
 	}
 }
