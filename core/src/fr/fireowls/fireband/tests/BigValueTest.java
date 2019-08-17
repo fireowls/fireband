@@ -16,7 +16,7 @@ public class BigValueTest {
         System.out.println(a.compareTo(new BigValue("Z", 1)) == 0);
 
         System.out.println("------Vérification unite-------");
-        System.out.println(new BigValue("$", 10000).toString().equals("10 k$"));
+        System.out.println(new BigValue("$", 10000).toString().equals("10.0 k$"));
         System.out.println(new BigValue(".", 123456789).toString().equals("123 M."));
 
 

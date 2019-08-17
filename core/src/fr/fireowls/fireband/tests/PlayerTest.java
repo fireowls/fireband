@@ -32,7 +32,7 @@ public class PlayerTest {
         player.substractMoney(400);
         System.out.println(player.getMoney().toString());
         System.out.println(piano.getPrice(piano.getTier()));
-        System.out.println(player.buy(musicien));
+        System.out.println(player.buy(musicien, 1));
     }
 
     public static void testSwitch() throws InstrumentNotFoundException {
