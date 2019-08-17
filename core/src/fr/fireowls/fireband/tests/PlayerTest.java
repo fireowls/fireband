@@ -10,19 +10,21 @@ import fr.fireowls.fireband.util.Constant;
 
 public class PlayerTest {
 
+    static Player player = new Player("Madeline");
+    static Piano piano = new Piano();
+    static Musicien musicien = new Musicien("Jellock", new Piano(), new BigValue(Constant.EXP_CHAR),0);
+    static Batterie batterie = new Batterie();
+
     public static void main(String[] args) {
         try {
             testSwitch();
         } catch (InstrumentNotFoundException instrumentNotFoundExeption) {
             instrumentNotFoundExeption.printStackTrace();
         }
+        testPlayer();
     }
 
     public static void testPlayer() {
-        Player player = new Player("Madeline");
-        Piano piano = new Piano();
-        Musicien musicien = new Musicien("Jellock", new Piano(), new BigValue(Constant.EXP_CHAR),0);
-
         System.out.println(player.getName());
         System.out.println(player.addInstrument(piano) + player.getInstruments().toString());
         System.out.println(player.removeInstrument(piano) + player.getInstruments().toString());
@@ -36,10 +38,6 @@ public class PlayerTest {
     }
 
     public static void testSwitch() throws InstrumentNotFoundException {
-        Player player = new Player("Madeline");
-        Piano piano = new Piano();
-        Batterie batterie = new Batterie();
-
         player.addInstrument(piano);
         player.addInstrument(batterie);
         System.out.println(player.getCurrentInstrument());
