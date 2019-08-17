@@ -90,6 +90,30 @@ public class Player implements Serializable {
 	}
 
 	/**
+	 * Selectionne l instrument suivant
+	 * @return le nouvel instrument selectionne
+	 */
+	public Instruments nextInstrument() {
+		this.idxCurrentInstrument ++;
+		if (this.idxCurrentInstrument == this.instruments.size()) {
+			this.idxCurrentInstrument = 0;
+		}
+		return this.instruments.get(this.idxCurrentInstrument);
+	}
+
+	/**
+	 * Selectionne l instrument precedent
+	 * @return le nouvel instrument selectionne
+	 */
+	public Instruments previousInstrument() {
+		this.idxCurrentInstrument --;
+		if (this.idxCurrentInstrument == -1) {
+			this.idxCurrentInstrument = this.instruments.size() - 1;
+		}
+		return this.instruments.get(this.idxCurrentInstrument);
+	}
+
+	/**
 	 * Ajouter de l argent au joueur
 	 * @param money le montant a ajouter
 	 */

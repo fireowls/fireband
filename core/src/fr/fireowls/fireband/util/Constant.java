@@ -1,8 +1,5 @@
 package fr.fireowls.fireband.util;
 
-
-import java.math.BigInteger;
-
 public class Constant {
     public static String divition[] = {"", "k", "M", "B", "T"};
     public static final int MAX_TIER = 5;
