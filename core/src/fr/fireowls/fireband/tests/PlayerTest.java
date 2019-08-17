@@ -29,7 +29,7 @@ public class PlayerTest {
         System.out.println(player.addInstrument(piano) + player.getInstruments().toString());
         System.out.println(player.removeInstrument(piano) + player.getInstruments().toString());
         System.out.println(player.getMoney().toString());
-        player.addMoney(500);
+        player.addMoney(100000);
         System.out.println(player.getMoney().toString());
         player.substractMoney(400);
         System.out.println(player.getMoney().toString());
