@@ -9,11 +9,13 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class FireBand extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img;
+	Texture img2;
 	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+		img = new Texture("guitar_tier0.png");
+		img2 = new Texture("badlogic.jpg");
 	}
 
 	@Override
@@ -22,6 +24,7 @@ public class FireBand extends ApplicationAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
 		batch.draw(img, 0, 0);
+		batch.draw(img2,img2.getWidth(),img2.getHeight());
 		batch.end();
 	}
 	
