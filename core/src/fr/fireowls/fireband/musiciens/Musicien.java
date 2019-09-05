@@ -30,9 +30,13 @@ public class Musicien implements Achetable, Serializable {
      * Duree durant laquelle le musicien raporte des points quand l application est fermee
      */
     private static int limite;
-
+    /**
+     * Le tier du musicien
+     */
     private int tier;
-
+    /**
+     * Tableau des prix pour passer au tier suivant
+     */
     private BigValue tierPrice[] = Constant.getMusicienPrice();
 
     /**
