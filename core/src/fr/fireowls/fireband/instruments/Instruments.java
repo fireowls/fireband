@@ -118,9 +118,11 @@ public abstract class Instruments implements Serializable, Achetable {
      * @return true si le joueur acheter le tier, false sinon
      */
 	public boolean upgradeTier(Player player,int tier){
-		if(player.buy(this, tier)){
-			this.instrument_Tier = tier;
-			return true;
+		if(this.instrument_Tier < tier){
+			if(player.buy(this, tier)){
+				this.instrument_Tier = tier;
+				return true;
+			}
 		}
 		return false;
 	}
