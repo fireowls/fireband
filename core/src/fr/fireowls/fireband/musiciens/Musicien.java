@@ -57,17 +57,13 @@ public class Musicien implements Achetable, Serializable {
      * Reciperer le nom du musicien
      * @return le nom du musicien
      */
-    public String getName() {
-        return name;
-    }
+    public String getName() { return name; }
 
     /**
      * Recuperer le prix du musicien
      * @return le prix du musicien
      */
-    public BigValue getPrice(int tier) {
-        return this.tierPrice[tier];
-    }
+    public BigValue getPrice(int tier) { return this.tierPrice[tier]; }
 
     /**
      * Recuperer l instrument joue par le musicien
