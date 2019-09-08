@@ -1,5 +1,7 @@
 package fr.fireowls.fireband.util;
 
+import com.badlogic.gdx.Gdx;
+
 public class Constant {
     public static String divition[] = {"", "k", "M", "B", "T"};
     public static final int MAX_TIER = 5;
@@ -7,6 +9,9 @@ public class Constant {
     public static final int MAX_LEVEL = 10;
     public static final String MONEY_CHAR = "$";
     public static final String EXP_CHAR = "♫";
+
+    public static final float SCREEN_WIDTH = Gdx.graphics.getWidth();
+    public static final float SCREEN_HEIGHT = Gdx.graphics.getHeight();
 
     public static BigValue[] getTierPrice(){
         final BigValue TIER_PRICE[] = new BigValue[Constant.MAX_TIER+1];

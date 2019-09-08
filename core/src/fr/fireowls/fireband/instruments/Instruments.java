@@ -1,5 +1,9 @@
 package fr.fireowls.fireband.instruments;
 
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
 import java.io.Serializable;
 import java.util.Random;
 
@@ -35,7 +39,11 @@ public abstract class Instruments implements Serializable, Achetable {
      * Tableau stockant les cout des differents tier
      */
 	protected BigValue tierPrice[] = Constant.getTierPrice();
-	
+
+	/**
+	 * Image de l'instrument
+	 */
+	protected Texture img;
 	/**
 	 * Construteur pour reprendre une progession
 	 * @param tier est le tier de l'instrument
@@ -44,6 +52,7 @@ public abstract class Instruments implements Serializable, Achetable {
 	public Instruments(int tier, Competence level) {
 		this.instrument_Tier = tier;
 		this.instrument_Level = level;
+		this.img = new Texture("badlogic.jpg");
 	}
 	
 	/**
@@ -133,6 +142,8 @@ public abstract class Instruments implements Serializable, Achetable {
 	public String getPourcentage(){
 	    return this.instrument_Level.getPourcentage();
     }
+
+    public Texture getImg(){return this.img;}
 
 	abstract boolean hasBrock();
 	abstract boolean canBeUse();
