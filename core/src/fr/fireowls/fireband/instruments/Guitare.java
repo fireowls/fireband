@@ -30,7 +30,7 @@ public class Guitare extends Instruments implements Serializable {
 	 * Constructeur a utilise pour creer une guitare basique
 	 */
 	public Guitare() {
-		this(0,new Competence());
+		super();
 	}
 	
 	/**

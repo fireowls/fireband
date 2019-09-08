@@ -29,7 +29,7 @@ public class Piano extends Instruments implements Serializable {
 	 * Constructeur a utilise pour creer un piano basique
 	 */
 	public Piano() {
-		this(0,new Competence());
+		super();
 	}
 
 	/**

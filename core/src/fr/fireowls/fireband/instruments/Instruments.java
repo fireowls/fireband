@@ -59,7 +59,7 @@ public abstract class Instruments implements Serializable, Achetable {
 	 * Constructeur pour initialiser pour la premiere fois un instrument
 	 */
 	public Instruments() {
-		this(0,new Competence());
+		this(1,new Competence());
 	}
 	
 	/**
@@ -142,6 +142,12 @@ public abstract class Instruments implements Serializable, Achetable {
 	public String getPourcentage(){
 	    return this.instrument_Level.getPourcentage();
     }
+
+    public String getName(){return this.getClass().getSimpleName();}
+
+    public int getLevel(){ return this.instrument_Level.getLevel(); }
+
+    public BigValue getProgress(){ return this.instrument_Level.getProgress();}
 
     public Texture getImg(){return this.img;}
 

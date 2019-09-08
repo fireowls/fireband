@@ -10,6 +10,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import fr.fireowls.fireband.FireBand;
 import fr.fireowls.fireband.exceptions.InstrumentNotFoundException;
+import fr.fireowls.fireband.hud.InstrumentHud;
 import fr.fireowls.fireband.instruments.Piano;
 import fr.fireowls.fireband.player.Player;
 import fr.fireowls.fireband.util.Constant;
@@ -20,12 +21,19 @@ public class gameScreen implements Screen {
     private OrthographicCamera gamecam;
     private Viewport gamePort;
     private Player player;
+    private InstrumentHud hud;
 
     public gameScreen(FireBand game, Player player){
         this.game = game;
         this.gamecam = new OrthographicCamera();
         this.gamePort = new FitViewport(Constant.SCREEN_WIDTH,Constant.SCREEN_HEIGHT,this.gamecam);
         this.player = player;
+        try{
+            this.hud = new InstrumentHud(this.game.batch,this.player.getCurrentInstrument());
+        }catch (InstrumentNotFoundException e){
+
+        }
+
     }
 
     @Override
@@ -40,15 +48,15 @@ public class gameScreen implements Screen {
 
         this.game.batch.setProjectionMatrix(this.gamecam.combined);
         this.game.batch.begin();
-       /*
         try{
             this.game.batch.draw(player.getCurrentInstrument().getImg(),0,0);
         }catch(InstrumentNotFoundException e){
             this.player.addInstrument(new Piano());
         }
-        */
-       this.game.batch.draw(new Texture("badlogic.jpg"),0,0);
         this.game.batch.end();
+
+        this.game.batch.setProjectionMatrix(this.hud.stage.getCamera().combined);
+        this.hud.stage.draw();
     }
 
     @Override
@@ -73,6 +81,6 @@ public class gameScreen implements Screen {
 
     @Override
     public void dispose() {
-
+        this.hud.dispose();
     }
 }

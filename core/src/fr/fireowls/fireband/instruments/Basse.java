@@ -29,7 +29,7 @@ public class Basse extends Instruments implements Serializable {
 	 * Constructeur a utilise pour creer une basse
 	 */
 	public Basse() {
-		this(0,new Competence());
+		super();
 	}
 	
 	/**
