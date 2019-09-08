@@ -1,5 +1,6 @@
 package fr.fireowls.fireband.hud;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -16,6 +17,9 @@ import fr.fireowls.fireband.util.Constant;
 
 public class InstrumentHud implements Disposable {
 
+    public static final float SCREEN_WIDTH = Gdx.graphics.getWidth();
+    public static final float SCREEN_HEIGHT = Gdx.graphics.getHeight();
+
     private Instruments instrument;
     public Stage stage;
     private Viewport viewport;
@@ -29,7 +33,7 @@ public class InstrumentHud implements Disposable {
     public InstrumentHud(SpriteBatch batch,Instruments instrument){
         this.instrument = instrument;
 
-        this.viewport = new FitViewport(Constant.SCREEN_WIDTH,Constant.SCREEN_HEIGHT,new OrthographicCamera());
+        this.viewport = new FitViewport(InstrumentHud.SCREEN_WIDTH,InstrumentHud.SCREEN_HEIGHT,new OrthographicCamera());
         this.stage = new Stage(this.viewport,batch);
         this.stage.addActor(initLabel());
     }

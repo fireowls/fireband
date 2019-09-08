@@ -17,6 +17,9 @@ import fr.fireowls.fireband.util.Constant;
 
 public class gameScreen implements Screen {
 
+    public static final float SCREEN_WIDTH = Gdx.graphics.getWidth();
+    public static final float SCREEN_HEIGHT = Gdx.graphics.getHeight();
+
     private FireBand game;
     private OrthographicCamera gamecam;
     private Viewport gamePort;
@@ -26,7 +29,7 @@ public class gameScreen implements Screen {
     public gameScreen(FireBand game, Player player){
         this.game = game;
         this.gamecam = new OrthographicCamera();
-        this.gamePort = new FitViewport(Constant.SCREEN_WIDTH,Constant.SCREEN_HEIGHT,this.gamecam);
+        this.gamePort = new FitViewport(gameScreen.SCREEN_WIDTH,gameScreen.SCREEN_HEIGHT,this.gamecam);
         this.player = player;
         try{
             this.hud = new InstrumentHud(this.game.batch,this.player.getCurrentInstrument());

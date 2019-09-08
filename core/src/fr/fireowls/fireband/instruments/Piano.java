@@ -1,5 +1,7 @@
 package fr.fireowls.fireband.instruments;
 
+import com.badlogic.gdx.graphics.Texture;
+
 import java.io.Serializable;
 
 import fr.fireowls.fireband.util.BigValue;
@@ -29,7 +31,7 @@ public class Piano extends Instruments implements Serializable {
 	 * Constructeur a utilise pour creer un piano basique
 	 */
 	public Piano() {
-		super();
+		this(1,new Competence());
 	}
 
 	/**

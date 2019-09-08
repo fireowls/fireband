@@ -1,5 +1,7 @@
 package fr.fireowls.fireband.instruments;
 
+import com.badlogic.gdx.graphics.Texture;
+
 import java.io.Serializable;
 
 import fr.fireowls.fireband.util.BigValue;
@@ -29,7 +31,7 @@ public class Basse extends Instruments implements Serializable {
 	 * Constructeur a utilise pour creer une basse
 	 */
 	public Basse() {
-		super();
+		this(1,new Competence());
 	}
 	
 	/**

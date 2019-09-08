@@ -10,9 +10,6 @@ public class Constant {
     public static final String MONEY_CHAR = "$";
     public static final String EXP_CHAR = "♫";
 
-    public static final float SCREEN_WIDTH = Gdx.graphics.getWidth();
-    public static final float SCREEN_HEIGHT = Gdx.graphics.getHeight();
-
     public static BigValue[] getTierPrice(){
         final BigValue TIER_PRICE[] = new BigValue[Constant.MAX_TIER+1];
         TIER_PRICE[0] = new BigValue(Constant.MONEY_CHAR);

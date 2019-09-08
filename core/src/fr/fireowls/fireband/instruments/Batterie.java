@@ -29,7 +29,7 @@ public class Batterie extends Instruments implements Serializable {
 	 * Constructeur pour creer une batterie basique
 	 */
 	public Batterie() {
-		super();
+		this(1,new Competence());
 	}
 
 	/**

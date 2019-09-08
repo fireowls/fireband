@@ -43,7 +43,7 @@ public abstract class Instruments implements Serializable, Achetable {
 	/**
 	 * Image de l'instrument
 	 */
-	protected Texture img;
+	protected Texture img = null;
 	/**
 	 * Construteur pour reprendre une progession
 	 * @param tier est le tier de l'instrument
