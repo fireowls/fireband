@@ -10,6 +10,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.ArrayList;
 
+import fr.fireowls.fireband.instruments.Basse;
+import fr.fireowls.fireband.instruments.Batterie;
 import fr.fireowls.fireband.instruments.Guitare;
 import fr.fireowls.fireband.instruments.Instruments;
 import fr.fireowls.fireband.instruments.Piano;
@@ -28,6 +30,8 @@ public class FireBand extends Game {
 		ArrayList<Instruments> instru = new ArrayList<>();
 		instru.add(new Piano());
 		instru.add(new Guitare());
+		instru.add(new Basse());
+		instru.add(new Batterie());
 		player = new Player("Test",new BigValue(Constant.MONEY_CHAR),instru);
         setScreen(new gameScreen(this,player));
 	}

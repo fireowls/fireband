@@ -30,12 +30,20 @@ public class InstrumentHud implements Disposable {
     private Label progressLabel;
     private Label pourcentLabel;
 
+
     public InstrumentHud(SpriteBatch batch,Instruments instrument){
         this.instrument = instrument;
 
         this.viewport = new FitViewport(InstrumentHud.SCREEN_WIDTH,InstrumentHud.SCREEN_HEIGHT,new OrthographicCamera());
         this.stage = new Stage(this.viewport,batch);
         this.stage.addActor(initLabel());
+    }
+
+    public void update(float dt){
+        this.tierLabel.setText("Tier : "+this.instrument.getTier());
+        this.levelLabel.setText("Niveau : "+this.instrument.getLevel());
+        this.progressLabel.setText(this.instrument.getProgress().toString());
+        this.pourcentLabel.setText(this.instrument.getPourcentage());
     }
 
     private Table initLabel(){
@@ -63,7 +71,10 @@ public class InstrumentHud implements Disposable {
 
     public Instruments getInstrument(){return this.instrument;}
 
-    public void setInstrument(Instruments instru) {this.instrument = instru;}
+    public void setInstrument(Instruments instru) {
+        this.instrument = instru;
+        this.update(1);
+    }
 
     @Override
     public void dispose() {
