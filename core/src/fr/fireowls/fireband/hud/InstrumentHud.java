@@ -60,11 +60,12 @@ public class InstrumentHud implements Disposable {
         this.pourcentLabel = new Label(this.instrument.getPourcentage(),labelStyle);
 
         table.add(nameLabel).expandX().padTop(10);
-        table.add(tierLabel).expandX().padTop(10);
-        table.add(levelLabel).expandX().padTop(10);
         table.row();
         table.add(progressLabel).expandX();
         table.add(pourcentLabel).expandX();
+        table.add(tierLabel).expandX().padBottom(10);
+        table.add(levelLabel).expandX().padBottom(10);
+
 
         return table;
     }
