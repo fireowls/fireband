@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import fr.fireowls.fireband.listener.SimpleDirectionGestureDetector;
+
 public class FireBand extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img;
@@ -16,6 +18,28 @@ public class FireBand extends ApplicationAdapter {
 		batch = new SpriteBatch();
 		img = new Texture("guitar_tier0.png");
 		img2 = new Texture("badlogic.jpg");
+		Gdx.input.setInputProcessor(new SimpleDirectionGestureDetector(new SimpleDirectionGestureDetector.DirectionListener() {
+
+			@Override
+			public void onUp() {
+				Gdx.app.log("up", "on up");
+			}
+
+			@Override
+			public void onRight() {
+				Gdx.app.log("right", "on right");
+			}
+
+			@Override
+			public void onLeft() {
+				Gdx.app.log("left", "on left");
+			}
+
+			@Override
+			public void onDown() {
+				Gdx.app.log("down", "on down");
+			}
+		}));
 	}
 
 	@Override
