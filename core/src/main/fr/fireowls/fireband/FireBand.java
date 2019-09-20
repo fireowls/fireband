@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import fr.fireowls.fireband.listener.SimpleDirectionGestureDetector;
+import fr.fireowls.fireband.mini_game.PianoMiniGame;
 import fr.fireowls.fireband.screens.GameScreen;
 import fr.fireowls.fireband.screens.ScreenManager;
 
@@ -20,7 +21,7 @@ public class FireBand extends Game {
 		batch = new SpriteBatch();
 
 		screenManager = new ScreenManager(this);
-		ScreenManager.setNewScreen(screenManager,new GameScreen(this));
+		ScreenManager.setNewScreen(screenManager,new PianoMiniGame(this));
 		Gdx.input.setInputProcessor(new SimpleDirectionGestureDetector(new SimpleDirectionGestureDetector.DirectionListener() {
 
 			@Override
