@@ -1,0 +1,9 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <span>Fireband Panel</span>
+        <span style="flex: 1 1 auto;"></span>
+        <a mat-button style="margin: 5px 0;"
+        *ngFor="let page of pages"
+        [routerLink]="page.path">{{page.label}}</a>
+    </mat-toolbar-row>
+</mat-toolbar>
