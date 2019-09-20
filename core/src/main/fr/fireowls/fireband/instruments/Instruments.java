@@ -136,4 +136,9 @@ public abstract class Instruments implements Serializable, Achetable {
 
 	abstract boolean hasBrock();
 	abstract boolean canBeUse();
+
+	public String getName() {
+		return this.getClass().getSimpleName();
+	}
+
 }
