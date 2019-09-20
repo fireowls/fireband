@@ -1,0 +1,9 @@
+fr.fireowls.fireband
+fr.fireowls.fireband.exceptions
+fr.fireowls.fireband.instruments
+fr.fireowls.fireband.interfaces
+fr.fireowls.fireband.listener
+fr.fireowls.fireband.musiciens
+fr.fireowls.fireband.player
+fr.fireowls.fireband.tests
+fr.fireowls.fireband.util

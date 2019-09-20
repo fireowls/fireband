@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MaterialModule } from './material/material.module';
 import { NavigationModule } from './navigation/navigation.module';
 
 import { AppComponent } from './app.component';

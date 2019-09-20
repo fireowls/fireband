@@ -6,7 +6,8 @@ import { projects } from './projects';
 
 export const environment = {
   production: false,
-  projectList: projects
+  projectList: projects,
+  basehref: ''
 };
 
 /*

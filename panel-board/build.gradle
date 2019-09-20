@@ -1,0 +1,64 @@
+task clean(type: Delete) {
+    delete 'dist'
+    delete 'node_modules'
+    delete 'package-lock.json'
+}
+
+task npmInstall(type:Exec) {
+
+    dependsOn clean
+
+    workingDir './'
+
+    if (org.gradle.internal.os.OperatingSystem.current().isWindows()) {
+        commandLine 'cmd', '/c', 'npm install'
+    } else {
+        commandLine 'npm install'
+    }
+
+    standardOutput = new ByteArrayOutputStream()
+
+    ext.output = {
+        return standardOutput.toString()
+    }
+}
+
+task build(type: Exec) {
+
+    dependsOn npmInstall
+
+    workingDir './'
+
+    if (org.gradle.internal.os.OperatingSystem.current().isWindows()) {
+        commandLine 'cmd', '/c', 'npm run build'
+    } else {
+        commandLine 'npm run build'
+    }
+
+    standardOutput = new ByteArrayOutputStream()
+
+    ext.output = {
+        return standardOutput.toString()
+    }
+}
+
+task deploy(type: Copy) {
+    dependsOn build
+    from 'dist/panel-board'
+    into '../pages/'
+}
+
+task copyTests(type: Copy) {
+  from '../pages/tests'
+  into 'tests/'
+}
+
+task copyDocs(type: Copy) {
+  from '../pages/docs'
+  into 'docs/'
+}
+
+task copySource(type: Copy) {
+  dependsOn copyTests
+  dependsOn copyDocs
+}

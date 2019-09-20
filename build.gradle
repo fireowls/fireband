@@ -1,5 +1,4 @@
 buildscript {
-    
 
     repositories {
         mavenLocal()
@@ -11,8 +10,6 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.4.2'
-        
-
     }
 }
 
@@ -36,6 +33,81 @@ allprojects {
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
         maven { url "https://oss.sonatype.org/content/repositories/releases/" }
     }
+
+}
+
+subprojects { project ->
+
+    if (project.name != 'android' && project.name != 'panel-board') {
+
+        task deployReport(type: Copy) { task ->
+            dependsOn ":$task.project.name:test"
+            group 'pages'
+            description 'deploy the report of tests'
+
+            from "${file("build/reports/tests/").path}"
+            into "../pages/tests/$task.project.name"
+        }
+
+        task deployDoc(type: Copy) { task ->
+            dependsOn ":$task.project.name:javadoc"
+            group 'pages'
+            description 'deploy the javadoc'
+
+            from "${file('build/docs/javadoc/').path}"
+            into "../pages/docs/$task.project.name"
+        }
+
+        task deployTestAndDoc { task ->
+            description 'deploy report and javadoc'
+            group 'pages'
+            finalizedBy ":$task.project.name:deployReport"
+            finalizedBy ":$task.project.name:deployDoc"
+        }
+
+    }
+
+}
+
+static def releaseTime(){
+    return new Date().format("yyyy-MM-dd") + 'T' + new Date().format("HH:mm:ss")
+}
+
+task generateEnvironementForPages {
+    group 'pages'
+    doLast {
+        def projects = new File('panel-board/src/environments/projects.ts')
+        projects.createNewFile()
+        projects.text = """import { Project } from '../app/models/project.model';
+
+export const projects: Project[] = [
+    __projects__
+];
+"""
+        def jsProjects = ""
+        subprojects.forEach{
+            p ->
+                if (p.name != 'panel-board' && p.name != 'android') {
+                    jsProjects += "{ name: '$p.name', date: new Date('${releaseTime()}') }, "
+                }
+        }
+
+        projects.text = projects.text.replace('__projects__', jsProjects.substring(0, jsProjects.length() - 2))
+    }
+}
+
+task deployPages {
+    group 'pages'
+    description 'deploy for gh-pages'
+    dependsOn generateEnvironementForPages
+    doFirst {
+        file('pages').delete()
+    }
+    subprojects.forEach { task ->
+        if (task.project.name != 'panel-board' && task.project.name != 'android')
+            finalizedBy ":$task.project.name:deployTestAndDoc"
+    }
+    finalizedBy ":panel-board:deploy"
 }
 
 project(":android") {

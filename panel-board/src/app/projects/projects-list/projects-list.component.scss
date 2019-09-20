@@ -1,0 +1,10 @@
+.item-link {
+    text-decoration: none;
+    border-radius: 10px;
+    transition: 0.5s;
+    &:hover {
+        transform: translateX(3%);
+        background: #202020;
+        color: #F0F0F0;
+    }
+}
