@@ -16,7 +16,7 @@ public class GameScreen implements Screen {
     private OrthographicCamera gamecam;
     private Viewport gameport;
 
-    Texture img = new Texture("[FireBand] piano I.png");
+    Texture img = new Texture("Guytare2.png");
     Texture img2 = new Texture("badlogic.jpg");
 
     public GameScreen(FireBand game){
