@@ -16,6 +16,10 @@ public class FireBand extends Game {
 	public SpriteBatch batch;
 	public static ScreenManager screenManager;
 
+	public static final int V_WIDTH = 100;
+	public static final int V_HEIGHT = 300;
+	public static final float PPM = 100;
+
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
