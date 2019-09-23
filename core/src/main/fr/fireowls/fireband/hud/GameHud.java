@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
@@ -41,7 +42,7 @@ public class GameHud implements Disposable {
     Label tierLbl;
     Label levelLbl;
     Label pourcentLbl;
-    Label progressLbl;
+    ProgressBar progressLbl;
 
     public GameHud(FireBand game, Instruments instrument, Player player) {
         this.port = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
@@ -68,7 +69,7 @@ public class GameHud implements Disposable {
         tierLbl = new Label("Tier : " + instrument.getTier(), style);
         levelLbl = new Label("Level : " + instrument.getCompetence().getLevel(), style);
         pourcentLbl = new Label(instrument.getPourcentage(), style);
-        progressLbl = new Label(instrument.getCompetence().getProgress().toString(), style);
+        progressLbl = new ProgressBar();
 
         table.add(playerNameLbl, settingsBtn);
         table.row();
