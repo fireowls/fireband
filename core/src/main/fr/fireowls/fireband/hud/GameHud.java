@@ -8,17 +8,21 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Event;
+import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -65,19 +69,28 @@ public class GameHud implements Disposable {
         TextureRegionDrawable trd = new TextureRegionDrawable(tr);
         settingsBtn = new ImageButton(new TextureRegionDrawable(trd));
 
+        Table player_table = new Table();
+        player_table.top();
+        player_table.add(playerNameLbl).expandX();
+        player_table.add(settingsBtn).expandX();
+
         instrumentNameLbl = new Label(instrument.getName(), style);
         tierLbl = new Label("Tier : " + instrument.getTier(), style);
         levelLbl = new Label("Level : " + instrument.getCompetence().getLevel(), style);
         pourcentLbl = new Label(instrument.getPourcentage(), style);
-        progressLbl = new ProgressBar();
+        progressLbl = new ProgressBar(0.0f, instrument.getCompetence().getExpToLevelUp().getValue().floatValue(), 0.1f, false, new ProgressBar.ProgressBarStyle());
 
-        table.add(playerNameLbl, settingsBtn);
+        Table instrument_table = new Table();
+        instrument_table.top();
+        instrument_table.add(instrumentNameLbl).colspan(2).expandX().padTop(10);
+        instrument_table.row();
+        instrument_table.add(tierLbl, levelLbl);
+        instrument_table.row();
+        instrument_table.add(pourcentLbl, progressLbl);
+
+        table.add(player_table).expand();
         table.row();
-        table.add(instrumentNameLbl).colspan(2).expandX().padTop(10);
-        table.row();
-        table.add(tierLbl,levelLbl);
-        table.row();
-        table.add(pourcentLbl, progressLbl);
+        table.add(instrument_table).expand();
 
         return table;
     }
